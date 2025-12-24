@@ -40,3 +40,7 @@ build/
 .idea
 
 .mvn
+
+.allure
+
+allure-results
