@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+<suite name="SQL-EX Cookies Suite">
+    <test name="Login and Save Cookies">
+        <classes>
+            <class name="tests.SqlExCookiesTest"/>
+        </classes>
+    </test>
+    <test name="Reuse Cookies and Cleanup">
+        <classes>
+            <class name="tests.SqlExCookiesTest"/>
+        </classes>
+    </test>
+</suite>
