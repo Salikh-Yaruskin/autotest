@@ -11,6 +11,7 @@ import io.qameta.allure.Story;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
 import pages.SqlExMainPage;
+import tests.processing.RetryAnalyzer;
 
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -24,7 +25,7 @@ public class SqlExCookiesTest extends BasicTest {
 
     private static final Path COOKIE_FILE = Paths.get("target", "cookies", "sql-ex-cookies.json");
 
-    @Test
+    @Test(retryAnalyzer = RetryAnalyzer.class)
     @Story("Первый запуск — логин, второй — reuse cookies")
     @Description("Если файла cookies нет — логинимся и сохраняем. Если есть — подставляем cookies и проверяем, " +
             "что залогинены.")

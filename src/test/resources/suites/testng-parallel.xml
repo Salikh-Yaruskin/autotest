@@ -4,5 +4,6 @@
     <suite-files>
         <suite-file path="suite-way2automation.xml"/>
         <suite-file path="suite-registration.xml"/>
+        <suite-file path="suite-fail.xml"/>
     </suite-files>
 </suite>

@@ -10,6 +10,7 @@ import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
 import pages.LoginPage;
+import tests.processing.RetryAnalyzer;
 
 import static helpers.PropertyProvider.getInstance;
 
@@ -33,7 +34,7 @@ public class RegistrationTest extends BasicTest {
         };
     }
 
-    @Test(dataProvider = "loginData")
+    @Test(dataProvider = "loginData", retryAnalyzer = RetryAnalyzer.class)
     @Story("Универсальная авторизация через DataProvider")
     @Description("Один тест прогоняется с разными данными")
     @Severity(SeverityLevel.CRITICAL)
