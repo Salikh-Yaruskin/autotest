@@ -10,19 +10,15 @@ import static helpers.WaitHelper.waitUntilVisible;
 
 public class AlertsPage extends BasePage {
 
-    // 🔹 вкладка Input Alert
     @FindBy(xpath = "//a[@href='#example-1-tab-2']")
     private WebElement inputAlertTab;
 
-    // 🔹 iframe внутри Input Alert
     @FindBy(xpath = "//div[@id='example-1-tab-2']//iframe")
     private WebElement inputAlertFrame;
 
-    // 🔹 кнопка вызова prompt
     @FindBy(xpath = "//button")
     private WebElement showPromptButton;
 
-    // 🔹 текст результата
     @FindBy(xpath = "//p[@id='demo']")
     private WebElement resultText;
 
