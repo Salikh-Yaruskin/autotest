@@ -13,7 +13,7 @@ public class BasicTest {
 
     @BeforeClass
     @Step("Открытие страницы")
-    void init(){
+    void init() {
         ChromeOptions chromeOptions = new ChromeOptions();
         chromeOptions.addArguments("--no-sandbox");
         chromeOptions.addArguments("--incognito");
@@ -22,7 +22,7 @@ public class BasicTest {
 
     @AfterClass
     @Step("Закрытие WebDriver")
-    void end(){
+    void end() {
         webDriver.quit();
     }
 }
