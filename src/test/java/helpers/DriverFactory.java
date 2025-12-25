@@ -53,7 +53,7 @@ public class DriverFactory {
                 ChromeOptions options = new ChromeOptions();
                 options.addArguments("--no-sandbox");
                 options.addArguments("--incognito");
-                options.addArguments("--headless");
+                //options.addArguments("--headless");
                 return new ChromeDriver(options);
             }
             case FIREFOX -> {
