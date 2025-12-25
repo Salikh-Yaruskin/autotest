@@ -5,7 +5,6 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.testng.annotations.AfterClass;
-import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeClass;
 
 public class BasicTest {
@@ -14,7 +13,7 @@ public class BasicTest {
 
     @BeforeClass
     @Step("Открытие страницы")
-    void init(){
+    void init() {
         ChromeOptions chromeOptions = new ChromeOptions();
         chromeOptions.addArguments("--no-sandbox");
         webDriver = new ChromeDriver(chromeOptions);
@@ -22,7 +21,7 @@ public class BasicTest {
 
     @AfterClass
     @Step("Закрытие WebDriver")
-    void end(){
+    void end() {
         webDriver.quit();
     }
 }
