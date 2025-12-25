@@ -82,10 +82,6 @@
                 <artifactId>maven-surefire-plugin</artifactId>
                 <version>3.5.2</version>
                 <configuration>
-<!--                    <suiteXmlFiles>-->
-<!--                        <suiteXmlFile>src/test/resources/suites/testng.xml</suiteXmlFile>-->
-<!--                        <suiteXmlFile>src/test/resources/suites/test_api.xml</suiteXmlFile>-->
-<!--                    </suiteXmlFiles>-->
                     <argLine>
                         -javaagent:"${settings.localRepository}/org/aspectj/aspectjweaver/1.9.23/aspectjweaver-1.9.23.jar"
                     </argLine>

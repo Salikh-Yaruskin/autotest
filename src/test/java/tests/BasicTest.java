@@ -5,6 +5,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.testng.annotations.AfterClass;
+import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeClass;
 
 public class BasicTest {
@@ -16,7 +17,6 @@ public class BasicTest {
     void init(){
         ChromeOptions chromeOptions = new ChromeOptions();
         chromeOptions.addArguments("--no-sandbox");
-        // chromeOptions.addArguments("--headless"); // настройка для отображения браузера во время прогона тестов
         webDriver = new ChromeDriver(chromeOptions);
     }
 
