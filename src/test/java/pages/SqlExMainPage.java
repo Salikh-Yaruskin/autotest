@@ -10,13 +10,13 @@ import static helpers.WaitHelper.waitUntilVisible;
 
 public class SqlExMainPage extends BasePage {
 
-    @FindBy(xpath = "//form[@name='frmlogin']//input[@name='login']")
+    @FindBy(css = "input[type='text'][name='login']")
     private WebElement loginInput;
 
-    @FindBy(xpath = "//form[@name='frmlogin']//input[@name='psw']")
+    @FindBy(css = "input[type='password'][name='psw']")
     private WebElement passwordInput;
 
-    @FindBy(xpath = "//form[@name='frmlogin']//input[@name='subm1' and @type='submit']")
+    @FindBy(css = "input[name='subm1']")
     private WebElement loginButton;
 
     public SqlExMainPage(WebDriver webDriver) {

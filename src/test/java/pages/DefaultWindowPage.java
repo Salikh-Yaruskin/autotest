@@ -9,16 +9,28 @@ import static helpers.WaitHelper.waitUntilVisible;
 
 public class DefaultWindowPage extends BasePage {
 
-    @FindBy(xpath = "//a[text()='New Browser Tab']")
+    @FindBy(css = "a[href='#']")
     private WebElement newBrowserTabLink;
+
+    private String currentWindow;
 
     public DefaultWindowPage(WebDriver driver) {
         super(driver);
     }
 
     @Step("Нажать ссылку New Browser Tab")
-    public void clickNewBrowserTab() {
+    public FramesAndWindowsPage clickNewBrowserTab() {
+        currentWindow = webDriver.getWindowHandle();
         waitUntilVisible(webDriver, newBrowserTabLink);
         newBrowserTabLink.click();
+
+        for (String handle : webDriver.getWindowHandles()) {
+            if (!handle.equals(currentWindow)) {
+                webDriver.switchTo().window(handle);
+                break;
+            }
+        }
+
+        return new FramesAndWindowsPage(webDriver);
     }
 }
