@@ -10,16 +10,16 @@ import static helpers.WaitHelper.waitUntilVisible;
 
 public class AlertsPage extends BasePage {
 
-    @FindBy(xpath = "//a[@href='#example-1-tab-2']")
+    @FindBy(css = "a[href='#example-1-tab-2']")
     private WebElement inputAlertTab;
 
-    @FindBy(xpath = "//div[@id='example-1-tab-2']//iframe")
+    @FindBy(css = "#example-1-tab-2 iframe[class='demo-frame']")
     private WebElement inputAlertFrame;
 
-    @FindBy(xpath = "//button")
+    @FindBy(xpath = "//button[contains(text(), 'Input')]")
     private WebElement showPromptButton;
 
-    @FindBy(xpath = "//p[@id='demo']")
+    @FindBy(id = "demo")
     private WebElement resultText;
 
     public AlertsPage(WebDriver driver) {

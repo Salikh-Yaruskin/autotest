@@ -1,6 +1,5 @@
 package tests;
 
-import helpers.PropertyProvider;
 import io.qameta.allure.Description;
 import io.qameta.allure.Epic;
 import io.qameta.allure.Feature;
@@ -11,7 +10,7 @@ import org.testng.annotations.Test;
 import pages.AlertsPage;
 
 import static helpers.PropertyProvider.getInstance;
-import static org.testng.AssertJUnit.assertTrue;
+import static org.testng.AssertJUnit.assertEquals;
 
 @Epic("Way2Automation")
 @Feature("Alerts")
@@ -24,12 +23,14 @@ public class AlertsTest extends BasicTest {
     public void inputAlertTest() {
         webDriver.get(getInstance().getProperty("alerts.url"));
 
-        AlertsPage page = new AlertsPage(webDriver);
-
-        page.openInputAlertTab()
+        String actual = new AlertsPage(webDriver)
+                .openInputAlertTab()
                 .switchToInputAlertFrame()
-                .enterTextToPrompt(getInstance().getProperty("alerts.message"));
+                .enterTextToPrompt(getInstance().getProperty("alert.message.name"))
+                .getResultText();
 
-        assertTrue(page.getResultText().contains(getInstance().getProperty("alerts.message")));
+        String expected = getInstance().getProperty("alerts.message");
+
+        assertEquals(expected, actual);
     }
 }
