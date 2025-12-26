@@ -25,14 +25,13 @@ public class DroppableTest extends BasicTest {
     public void dragAndDropShouldChangeText() {
         webDriver.get(PropertyProvider.getInstance().getProperty("drag-n-drop.url"));
 
-        DroppablePage droppablePage = new DroppablePage(webDriver);
-
-        droppablePage
+        String actual = new DroppablePage(webDriver)
                 .switchToFrame()
-                .dragAndDrop();
+                .dragAndDrop()
+                .getDroppableText();
 
-        String text = droppablePage.getDroppableText();
+        String expected = "Dropped!";
 
-        assertEquals("Dropped!", text);
+        assertEquals(expected, actual);
     }
 }
