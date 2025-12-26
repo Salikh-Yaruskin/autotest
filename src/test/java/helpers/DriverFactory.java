@@ -39,7 +39,6 @@ public class DriverFactory {
             default -> throw new IllegalArgumentException("Unknown browser");
         }
 
-
         try {
             return new RemoteWebDriver(new URL(PropertyProvider.getInstance().getProperty("hub.url")), capabilities);
         } catch (MalformedURLException e) {
