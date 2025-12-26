@@ -9,10 +9,10 @@ import static helpers.WaitHelper.waitUntilVisible;
 
 public class BasicAuthPage extends BasePage {
 
-    @FindBy(xpath = "//div[@class='exampleBox']//input[contains(@id, 'displayImage')]")
+    @FindBy(id = "displayImage")
     private WebElement displayImageButton;
 
-    @FindBy(xpath = "//div[@class='exampleBox']//img[@id='downloadImg']")
+    @FindBy(id = "downloadImg")
     private WebElement authenticatedImage;
 
     public BasicAuthPage(WebDriver driver) {

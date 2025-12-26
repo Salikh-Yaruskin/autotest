@@ -7,11 +7,10 @@ import io.qameta.allure.Feature;
 import io.qameta.allure.Severity;
 import io.qameta.allure.SeverityLevel;
 import io.qameta.allure.Story;
-import org.testng.Assert;
 import org.testng.annotations.Test;
 import pages.BasicAuthPage;
 
-import static org.testng.AssertJUnit.assertTrue;
+import static org.testng.AssertJUnit.assertEquals;
 
 @Epic("HTTP Gallery")
 @Feature("Basic Authentication")
@@ -24,10 +23,12 @@ public class BasicAuthTest extends BasicTest {
     public void basicAuthTest() {
         webDriver.get(PropertyProvider.getInstance().getProperty("httpwatch.url"));
 
-        BasicAuthPage page = new BasicAuthPage(webDriver);
+        boolean actual = new BasicAuthPage(webDriver)
+                .clickDisplayImage()
+                .isImageLoaded();
 
-        page.clickDisplayImage();
+        boolean expected = true;
 
-        assertTrue(page.isImageLoaded());
+        assertEquals(expected, actual);
     }
 }
