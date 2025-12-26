@@ -13,7 +13,7 @@ public class HomePage extends BasePage {
     @FindBy(xpath = "//p[contains(., \"You're logged in!!\")]")
     private WebElement loggedInMessage;
 
-    @FindBy(xpath = "//a[contains(.,'Logout') or contains(@href, '#/login')]")
+    @FindBy(css = "a[href='#/login']")
     private WebElement logoutLink;
 
     public HomePage(WebDriver webDriver) {

@@ -27,15 +27,16 @@ public class JavaScriptExecutorTest extends BasicTest {
 
         webDriver.get(PropertyProvider.getInstance().getProperty("web.url.profile"));
 
-        ProfilePage profilePage = new ProfilePage(webDriver);
-        profilePage.inputName();
+        new ProfilePage(webDriver).inputName("Ivan");
 
         JavaScriptExecutorHelper.blurActiveElement(webDriver);
 
-        String activeTag = webDriver.switchTo().activeElement().getTagName();
+        String actual = webDriver.switchTo().activeElement().getTagName().toLowerCase();
+        String expect = "input";
+
         boolean hasScroll = JavaScriptExecutorHelper.hasVerticalScroll(webDriver);
 
-        softAssert.assertNotEquals(activeTag.toLowerCase(), "input");
+        softAssert.assertNotEquals(actual, expect);
         softAssert.assertTrue(hasScroll);
 
         softAssert.assertAll();
