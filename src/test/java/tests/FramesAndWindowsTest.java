@@ -22,33 +22,17 @@ public class FramesAndWindowsTest extends BasicTest {
     @Story("Открытие нескольких вкладок")
     @Description("Открыть новую вкладку, перейти в неё, открыть третью и проверить количество окон")
     @Severity(SeverityLevel.CRITICAL)
-    public void openMultipleWindowsTest() {
+    public void openMultipleWindowsTest() throws InterruptedException {
         webDriver.get(PropertyProvider.getInstance().getProperty("tables.url"));
 
-        FramesAndWindowsPage mainPage = new FramesAndWindowsPage(webDriver);
+        int actual = new FramesAndWindowsPage(webDriver)
+                .switchToFrame()
+                .clickOpenWindow()
+                .clickNewBrowserTab()
+                .getOpenedWindowsCount();
 
-        String firstWindow = webDriver.getWindowHandle();
+        int expected = 3;
 
-        mainPage.switchToFrame()
-                .clickOpenWindow();
-
-        switchToNewWindow(firstWindow);
-        String secondWindow = webDriver.getWindowHandle();
-
-        DefaultWindowPage secondPage = new DefaultWindowPage(webDriver);
-        secondPage.clickNewBrowserTab();
-
-        switchToNewWindow(secondWindow);
-
-        assertEquals(webDriver.getWindowHandles().size(), 3);
-    }
-
-    private void switchToNewWindow(String currentHandle) {
-        for (String handle : webDriver.getWindowHandles()) {
-            if (!handle.equals(currentHandle)) {
-                webDriver.switchTo().window(handle);
-                break;
-            }
-        }
+        assertEquals(actual, expected);
     }
 }

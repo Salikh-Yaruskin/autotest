@@ -11,11 +11,13 @@ import static helpers.WaitHelper.waitUntilVisible;
 
 public class FramesAndWindowsPage extends BasePage {
 
-    @FindBy(xpath = "//iframe[contains(@class,'demo-frame')]")
+    @FindBy(css = "#example-1-tab-1 iframe.demo-frame")
     private WebElement iframe;
 
-    @FindBy(xpath = "//a[@target='_blank']")
+    @FindBy(css = "a[href='#']")
     private WebElement openWindowLink;
+
+    private String currentWindow;
 
     public FramesAndWindowsPage(WebDriver driver) {
         super(driver);
@@ -30,9 +32,25 @@ public class FramesAndWindowsPage extends BasePage {
     }
 
     @Step("Нажать ссылку открытия нового окна")
-    public FramesAndWindowsPage clickOpenWindow() {
+    public DefaultWindowPage clickOpenWindow() {
+        currentWindow = webDriver.getWindowHandle();
         waitUntilVisible(webDriver, openWindowLink);
         openWindowLink.click();
-        return this;
+        switchToNewWindow();
+        return new DefaultWindowPage(webDriver);
+    }
+
+    @Step("Получение количества открытых окон")
+    public int getOpenedWindowsCount() {
+        return webDriver.getWindowHandles().size();
+    }
+
+    private void switchToNewWindow() {
+        for (String handle : webDriver.getWindowHandles()) {
+            if (!handle.equals(currentWindow)) {
+                webDriver.switchTo().window(handle);
+                break;
+            }
+        }
     }
 }

@@ -7,13 +7,12 @@ import io.qameta.allure.Feature;
 import io.qameta.allure.Severity;
 import io.qameta.allure.SeverityLevel;
 import org.testng.annotations.Test;
-import pages.InterestsPage;
-import pages.PaymentPage;
 import pages.ProfilePage;
 import tests.processing.RetryAnalyzer;
 
 import java.util.Objects;
 
+import static org.testng.AssertJUnit.assertEquals;
 import static org.testng.AssertJUnit.assertTrue;
 
 @Epic("Way2Automation")
@@ -35,17 +34,18 @@ public class FailForCreateScreenshotTest extends BasicTest {
     void demoFail_wrongAlertText_shouldAttachScreenshot() {
         webDriver.get(PropertyProvider.getInstance().getProperty("web.url.profile"));
 
-        ProfilePage profilePage = new ProfilePage(webDriver);
-        InterestsPage interestsPage = profilePage
-                .inputName()
-                .inputEmail()
-                .clickNextSection();
-        interestsPage.selectXbox();
+        String actual = new ProfilePage(webDriver)
+                .clearForm()
+                .inputName("Ivan")
+                .inputEmail("ivan@test.com")
+                .clickNextSection()
+                .selectXbox()
+                .goToPaymentViaTopBar()
+                .clickSubmitAndGetAlertText();
 
-        PaymentPage paymentPage = interestsPage.goToPaymentViaTopBar();
-        String alertText = paymentPage.clickSubmitAndGetAlertText();
+        String expected = "not awesome!";
 
-        org.testng.Assert.assertEquals(alertText, "not awesome!");
+        assertEquals(expected, actual);
     }
 
 }
