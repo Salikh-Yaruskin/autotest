@@ -7,7 +7,6 @@ import io.qameta.allure.Feature;
 import io.qameta.allure.Severity;
 import io.qameta.allure.SeverityLevel;
 import io.qameta.allure.Story;
-import org.testng.Assert;
 import org.testng.annotations.Test;
 import pages.DroppablePage;
 import tests.processing.RetryAnalyzer;
