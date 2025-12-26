@@ -7,7 +7,6 @@ import io.qameta.allure.Feature;
 import io.qameta.allure.Severity;
 import io.qameta.allure.SeverityLevel;
 import io.qameta.allure.Story;
-import org.testng.Assert;
 import org.testng.annotations.Test;
 import pages.DroppablePage;
 import tests.processing.RetryAnalyzer;
@@ -25,14 +24,13 @@ public class DroppableTest extends BasicTest {
     public void dragAndDropShouldChangeText() {
         webDriver.get(PropertyProvider.getInstance().getProperty("drag-n-drop.url"));
 
-        DroppablePage droppablePage = new DroppablePage(webDriver);
-
-        droppablePage
+        String actual = new DroppablePage(webDriver)
                 .switchToFrame()
-                .dragAndDrop();
+                .dragAndDrop()
+                .getDroppableText();
 
-        String text = droppablePage.getDroppableText();
+        String expected = "Dropped!";
 
-        assertEquals("Dropped!", text);
+        assertEquals(expected, actual);
     }
 }

@@ -8,13 +8,13 @@ import org.openqa.selenium.support.FindBy;
 
 public class DroppablePage extends BasePage {
 
-    @FindBy(xpath = "//iframe[contains(@class, 'demo-frame')]")
+    @FindBy(css = "#example-1-tab-1 iframe.demo-frame")
     private WebElement iframe;
 
-    @FindBy(xpath = "//div[@id='draggable']")
+    @FindBy(id = "draggable")
     private WebElement draggable;
 
-    @FindBy(xpath = "//div[@id='droppable']")
+    @FindBy(id = "droppable")
     private WebElement droppable;
 
     public DroppablePage(WebDriver webDriver) {

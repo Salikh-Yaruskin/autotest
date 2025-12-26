@@ -50,14 +50,21 @@ public class RegistrationTest extends BasicTest {
 
         if (expectSuccess) {
             var homePage = loginPage.clickLogin();
+
+            String actual = homePage.getLoggedInMessage();
+            String expected = getInstance().getProperty("registeration.homepage.message");
+
             softAssert.assertTrue(homePage.isOpened());
-            softAssert.assertTrue(homePage.getLoggedInMessage()
-                    .contains(getInstance().getProperty("registeration.homepage.message")));
+            softAssert.assertEquals(actual, expected);
+
             homePage.logout();
         } else {
             loginPage.clickLogin();
-            softAssert.assertEquals(loginPage.getErrorMessage(),
-                    getInstance().getProperty("registeration.error.message"));
+
+            String actual = loginPage.getErrorMessage();
+            String expected = getInstance().getProperty("registeration.error.message");
+
+            softAssert.assertEquals(actual, expected);
         }
 
         softAssert.assertAll();

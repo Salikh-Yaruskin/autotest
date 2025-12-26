@@ -1,28 +1,29 @@
 package pages;
 
+import domain.api.PreviewResponse;
+import helpers.PropertyProvider;
 import io.qameta.allure.Step;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
+import static helpers.WaitHelper.waitUntilUrlContains;
+import static mapper.PreviewMapper.getPreview;
 import static helpers.WaitHelper.waitUntilClickable;
 import static helpers.WaitHelper.waitUntilVisible;
 
 public class InterestsPage extends BasePage {
 
-    @FindBy(xpath = "//*[@id='form-views']//div[@class='radio']//label[contains(normalize-space(.),'I like XBOX')]")
-    private WebElement xboxLabel;
-
-    @FindBy(xpath = "//*[@id='form-views']//input[@type='radio' and @value='xbox']")
+    @FindBy(css = "#form-views input[value='xbox']")
     private WebElement xboxRadio;
 
-    @FindBy(xpath = "//*[@id='form-views']//a[contains(@href,'#/form/payment') or @ui-sref='form.payment']")
+    @FindBy(css = "a[ui-sref='form.payment']")
     private WebElement nextSectionToPaymentButton;
 
-    @FindBy(xpath = "//*[@id='status-buttons']//a[contains(@href,'#/form/payment')]")
+    @FindBy(css = "#status-buttons a[ui-sref='.payment']")
     private WebElement paymentTopButton;
 
-    @FindBy(xpath = "//pre[contains(@class,'ng-binding')]")
+    @FindBy(css = "pre.ng-binding")
     private WebElement preField;
 
     public InterestsPage(WebDriver webDriver) {
@@ -37,8 +38,8 @@ public class InterestsPage extends BasePage {
 
     @Step("Выбрать интерес: I like XBOX")
     public InterestsPage selectXbox() {
-        waitUntilClickable(webDriver, xboxLabel);
-        xboxLabel.click();
+        waitUntilClickable(webDriver, xboxRadio);
+        xboxRadio.click();
         return this;
     }
 
@@ -49,15 +50,16 @@ public class InterestsPage extends BasePage {
     }
 
     @Step("Получить введенные значение из первью-поля")
-    public String getPreviewField() {
+    public PreviewResponse getPreviewField() {
         waitUntilVisible(webDriver, preField);
-        return preField.getText().trim();
+        return getPreview(preField.getText().trim());
     }
 
     @Step("Перейти на Payment через верхнее меню")
     public PaymentPage goToPaymentViaTopBar() {
         waitUntilClickable(webDriver, paymentTopButton);
         paymentTopButton.click();
+        waitUntilUrlContains(webDriver, PropertyProvider.getInstance().getProperty("web.url.payment"));
         return new PaymentPage(webDriver);
     }
 
