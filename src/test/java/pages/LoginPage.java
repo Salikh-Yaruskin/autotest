@@ -10,25 +10,25 @@ import static helpers.WaitHelper.waitUntilVisible;
 
 public class LoginPage extends BasePage {
 
-    @FindBy(xpath = "//input[@id='username']")
+    @FindBy(css = "#username")
     private WebElement username;
 
-    @FindBy(xpath = "//input[@id='password']")
+    @FindBy(css = "#password")
     private WebElement password;
 
-    @FindBy(xpath = "//input[contains(@id,'_input_username_0') or contains(@name,'_input_username_0')]")
+    @FindBy(xpath = "//input[contains(@id,'_input_username_0')]")
     private WebElement description;
 
-    @FindBy(xpath = "//button[contains(@class,'btn')]")
+    @FindBy(css = "button[ng-click='Auth.login()']")
     private WebElement loginButton;
 
-    @FindBy(xpath = "//div[contains(@class,'alert') and contains(.,'Username or password is incorrect')]")
+    @FindBy(css = "div[ng-if='Auth.error']")
     private WebElement authErrorAlert;
 
-    @FindBy(xpath = "//input[@id='username']/following-sibling::div[contains(@class,'help-block')]")
+    @FindBy(css = "div[ng-messages='form.username.$error']")
     private WebElement usernameValidation;
 
-    @FindBy(xpath = "//input[@id='password']/following-sibling::div[contains(@class,'help-block')]")
+    @FindBy(css = "div[ng-messages='form.password.$error']")
     private WebElement passwordValidation;
 
     public LoginPage(WebDriver webDriver) {
