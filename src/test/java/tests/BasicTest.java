@@ -16,17 +16,16 @@ public class BasicTest {
 
     @BeforeClass
     @Step("Открытие страницы")
-    void init(){
+    void init() {
         ChromeOptions chromeOptions = new ChromeOptions();
         chromeOptions.addArguments("--no-sandbox");
-        // chromeOptions.addArguments("--headless"); // настройка для отображения браузера во время прогона тестов
         chromeOptions.addArguments("--incognito");
         webDriver = new ChromeDriver(chromeOptions);
     }
 
     @AfterClass
     @Step("Закрытие WebDriver")
-    void end(){
+    void end() {
         webDriver.quit();
     }
 }
