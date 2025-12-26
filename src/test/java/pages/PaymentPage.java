@@ -12,13 +12,13 @@ import static helpers.WaitHelper.waitUntilVisible;
 
 public class PaymentPage extends BasePage {
 
-    @FindBy(xpath = "//*[@id='form-views']//h3[contains(.,'Test Completed')]")
+    @FindBy(css = "#form-views h3")
     private WebElement completedHeader;
 
-    @FindBy(xpath = "//*[@id='form-views']//button[@type='submit' and contains(.,'Submit')]")
+    @FindBy(css = "#form-views button.btn")
     private WebElement submitButton;
 
-    @FindBy(xpath = "//*[@id='status-buttons']//a[contains(@class,'active') and contains(@href,'#/form/payment')]")
+    @FindBy(css = "#status-buttons a[ui-sref='.payment']")
     private WebElement paymentActiveTab;
 
     public PaymentPage(WebDriver webDriver) {

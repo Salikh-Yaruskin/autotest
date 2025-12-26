@@ -1,7 +1,5 @@
 package tests;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import domain.api.PreviewResponse;
 import helpers.PropertyProvider;
 import io.qameta.allure.Description;
@@ -13,11 +11,11 @@ import io.qameta.allure.Story;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
 import pages.InterestsPage;
-import pages.PaymentPage;
 import pages.ProfilePage;
 import tests.processing.RetryAnalyzer;
+import tests.processing.RetryAnalyzer;
 
-import static helpers.WaitHelper.waitUntilUrlContains;
+import static org.testng.AssertJUnit.assertEquals;
 
 @Epic("Way2Automation")
 @Feature("Мульти-форма регистрации")
