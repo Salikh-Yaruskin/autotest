@@ -18,13 +18,11 @@ public class BasicTest {
 
     @BeforeClass
     @Parameters({"browser", "useGrid"})
-//    @Step("Инициализация WebDriver")
     void init(@Optional("CHROME") String browser, @Optional("false") boolean useGrid) {
         webDriver = DriverFactory.createWebDriver(BrowserType.valueOf(browser.toUpperCase()), useGrid);
     }
 
     @AfterClass
-//    @Step("Закрытие WebDriver")
     void end() {
         webDriver.quit();
     }
