@@ -8,6 +8,7 @@ import io.qameta.allure.Severity;
 import io.qameta.allure.SeverityLevel;
 import org.testng.annotations.Test;
 import pages.ProfilePage;
+import tests.processing.RetryAnalyzer;
 
 import java.util.Objects;
 
@@ -18,7 +19,7 @@ import static org.testng.AssertJUnit.assertTrue;
 @Feature("Скриншоты при намеренном падение тестов")
 public class FailForCreateScreenshotTest extends BasicTest {
 
-    @Test
+    @Test(retryAnalyzer = RetryAnalyzer.class)
     @Description("Намеренно падающий тест - проверяем неправильный URL")
     @Severity(SeverityLevel.TRIVIAL)
     void demoFail_wrongUrl_shouldAttachScreenshot() {
@@ -27,7 +28,7 @@ public class FailForCreateScreenshotTest extends BasicTest {
         assertTrue(Objects.requireNonNull(webDriver.getCurrentUrl()).contains("#/form/payment"));
     }
 
-    @Test
+    @Test(retryAnalyzer = RetryAnalyzer.class)
     @Description("Намеренно падающий тест - неверный текст alert")
     @Severity(SeverityLevel.MINOR)
     void demoFail_wrongAlertText_shouldAttachScreenshot() {
