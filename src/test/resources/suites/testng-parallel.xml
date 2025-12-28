@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+<suite name="Parallel Suites">
+    <suite-files>
+        <suite-file path="suite-way2automation.xml"/>
+        <suite-file path="suite-registration.xml"/>
+    </suite-files>
+</suite>
