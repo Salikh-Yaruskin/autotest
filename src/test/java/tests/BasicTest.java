@@ -16,6 +16,7 @@ public class BasicTest {
     void init() {
         ChromeOptions chromeOptions = new ChromeOptions();
         chromeOptions.addArguments("--no-sandbox");
+        chromeOptions.addArguments("--incognito");
         webDriver = new ChromeDriver(chromeOptions);
     }
 
