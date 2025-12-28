@@ -16,3 +16,9 @@
 |-----|------------------------|----------------------------------------------------------------------------------------------|---------------------------------------------------|----------------------------------------------------------------------------------------------------|
 | R-1 | Успешная авторизация   | Открыта страница `https://www.way2automation.com/angularjs-protractor/registeration/#/login` | Name = angular, Password = password, Username = * | Перенаправление на страницу `https://www.way2automation.com/angularjs-protractor/registeration/#/` |
 | R-1 | Провальная авторизация | Открыта страница `https://www.way2automation.com/angularjs-protractor/registeration/#/login` | Name = test, Password = test, Username = *        | Появляется уведомление `Username or password is incorrect`                                         |
+
+
+## Скриншоты
+
+Настроил работу скриншотов при падении
+![img.png](img.png)

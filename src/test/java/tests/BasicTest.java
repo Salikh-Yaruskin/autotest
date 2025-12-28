@@ -1,12 +1,15 @@
 package tests;
 
 import io.qameta.allure.Step;
+import io.qameta.allure.testng.AllureTestNg;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
+import org.testng.annotations.Listeners;
 
+@Listeners({AllureTestNg.class, AllureScreenshotListener.class})
 public class BasicTest {
 
     protected WebDriver webDriver;
