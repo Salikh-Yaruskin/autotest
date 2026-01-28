@@ -6,9 +6,13 @@ pipeline {
       steps { checkout scm }
     }
 
-    stage('Test') {
+    stage('Test (Docker Maven)') {
       steps {
-        sh 'mvn -U -q test'
+        script {
+          docker.image('maven:3.9-eclipse-temurin-17').inside {
+            sh 'mvn -U -q test'
+          }
+        }
       }
     }
   }
