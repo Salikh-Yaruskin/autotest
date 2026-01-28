@@ -14,7 +14,7 @@ pipeline {
 
     stage('deploy') {
       steps {
-        echp 'deplying app...'
+        echo 'deplying app...'
       }
     }
   }
