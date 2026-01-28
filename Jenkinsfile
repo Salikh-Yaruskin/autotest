@@ -2,21 +2,20 @@ pipeline {
   agent any
 
   stages {
-    stage('Checkout') {
-      steps { checkout scm }
+    stage('build') {
+      steps { echo 'build app...' }
     }
 
-    stage('Build & Test') {
+    stage('test') {
       steps {
-        sh 'mvn -U -q test'
+        echo 'testing app...'
       }
     }
-  }
 
-  post {
-    always {
-      junit 'target/surefire-reports/*.xml'
-      archiveArtifacts artifacts: 'target/**', allowEmptyArchive: true
+    stage('deploy') {
+      steps {
+        echp 'deplying app...'
+      }
     }
   }
 }
