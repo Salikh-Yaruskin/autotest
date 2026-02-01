@@ -25,6 +25,7 @@ services:
     volumes:
       - maven-repo:/root/.m2
       - ./target:/app/target
+    command: ["sh", "-c", "mvn test && sleep 10"]
 
 networks:
   selenoid-network:
