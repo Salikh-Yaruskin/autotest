@@ -2,6 +2,12 @@ pipeline {
   agent any
 
   stages {
+    stage('Cleanup Workspace') {
+      steps {
+        cleanWs()
+      }
+    }
+
     stage('UI tests') {
       steps {
         sh '''
