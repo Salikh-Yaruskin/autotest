@@ -8,10 +8,10 @@ services:
       - "4444:4444"
     environment:
       - DOCKER_API_VERSION=1.44
-      - OVERRIDE_VIDEO_OUTPUT_DIR=/opt/selenoid/video
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
-    command: ["-limit", "5", "-container-network", "selenoid-network"]
+      - selenoid-config:/etc/selenoid:ro
+    command: ["-conf", "/etc/selenoid/browsers.json", "-limit", "5", "-container-network", "selenoid-network"]
 
   tests:
     build: .
@@ -33,3 +33,4 @@ networks:
 
 volumes:
   maven-repo:
+  selenoid-config:
