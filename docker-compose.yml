@@ -9,12 +9,12 @@ services:
     environment:
       - DOCKER_API_VERSION=1.44
     volumes:
-      - /var/jenkins_home/workspace/selenoid/selenoid/browsers.json:/etc/selenoid/browsers.json:ro
       - /var/run/docker.sock:/var/run/docker.sock
+      - selenoid-config:/etc/selenoid:rw
     command: >
-      -conf /etc/selenoid/browsers.json
       -limit 5
       -container-network selenoid-network
+      -disable-docker
 
   tests:
     build:
@@ -29,7 +29,7 @@ services:
       SELENOID_URL: http://selenoid:4444/wd/hub
     volumes:
       - maven-repo:/root/.m2
-      - /var/jenkins_home/workspace/selenoid/target:/app/target
+      - ./target:/app/target
 
 networks:
   selenoid-network:
@@ -38,3 +38,4 @@ networks:
 
 volumes:
   maven-repo:
+  selenoid-config:
