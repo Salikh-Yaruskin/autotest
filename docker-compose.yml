@@ -10,16 +10,12 @@ services:
       - DOCKER_API_VERSION=1.44
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
-      - selenoid-config:/etc/selenoid:rw
     command: >
       -limit 5
       -container-network selenoid-network
-      -disable-docker
 
   tests:
-    build:
-      context: .
-      dockerfile: Dockerfile
+    build: .
     container_name: tests
     networks:
       - selenoid-network
@@ -38,4 +34,3 @@ networks:
 
 volumes:
   maven-repo:
-  selenoid-config:
