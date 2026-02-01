@@ -2,19 +2,27 @@ version: "3.8"
 
 services:
   selenoid:
-    image: aerokube/selenoid:latest
+    image: aerokube/selenoid:1.11.3
     container_name: selenoid
-    volumes:
-      - /var/run/docker.sock:/var/run/docker.sock
-      - ./selenoid/browsers.json:/etc/selenoid/browsers.json
-    command:
-      - "-conf"
-      - "/etc/selenoid/browsers.json"
+    networks:
+      - selenoid-network
     ports:
       - "4444:4444"
+    environment:
+      - DOCKER_API_VERSION=1.44
+    volumes:
+      - ./selenoid/browsers.json:/etc/selenoid/browsers.json:ro
+      - /var/run/docker.sock:/var/run/docker.sock
+    command: >
+      -conf /etc/selenoid/browsers.json
+      -limit 5
+      -container-network selenoid-network
 
   tests:
     build: .
+    container_name: tests
+    networks:
+      - selenoid-network
     depends_on:
       - selenoid
     environment:
@@ -22,6 +30,11 @@ services:
     volumes:
       - maven-repo:/root/.m2
       - ./target:/app/target
+
+networks:
+  selenoid-network:
+    name: selenoid-network
+    driver: bridge
 
 volumes:
   maven-repo:

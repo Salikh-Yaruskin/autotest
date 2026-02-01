@@ -5,7 +5,9 @@
       "120.0": {
         "image": "selenoid/chrome:120.0",
         "port": "4444",
-        "path": "/"
+        "path": "/",
+        "shmSize": 2147483648,
+        "mem": "2g"
       }
     }
   }

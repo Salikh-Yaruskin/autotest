@@ -22,7 +22,7 @@ public class BasicTest {
         options.addArguments("--headless");
 
         String selenoidUrl = System.getenv()
-                .getOrDefault("SELENOID_URL", "http://localhost:4444/wd/hub");
+                .getOrDefault("SELENOID_URL", "http://selenoid:4444/wd/hub");
 
         webDriver = new RemoteWebDriver(
                 new URL(selenoidUrl),
