@@ -13,6 +13,8 @@ services:
     command: >
       -limit 5
       -container-network selenoid-network
+      -disable-docker
+      -enable-file-upload
 
   tests:
     build: .
