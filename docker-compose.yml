@@ -11,7 +11,7 @@ services:
     environment:
       - DOCKER_API_VERSION=1.44
     volumes:
-      - ${PWD}/selenoid/browsers.json:/etc/selenoid/browsers.json:ro
+      - ./selenoid/browsers.json:/etc/selenoid/browsers.json:ro
       - /var/run/docker.sock:/var/run/docker.sock
     command: >
       -conf /etc/selenoid/browsers.json
@@ -29,7 +29,7 @@ services:
       SELENOID_URL: http://selenoid:4444/wd/hub
     volumes:
       - maven-repo:/root/.m2
-      - ${PWD}/target:/app/target
+      - ./target:/app/target
 
 networks:
   selenoid-network:
