@@ -34,3 +34,4 @@ networks:
 volumes:
   maven-repo:
   selenoid-config:
+    external: true
