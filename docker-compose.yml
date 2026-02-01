@@ -1,0 +1,27 @@
+version: "3.8"
+
+services:
+  selenoid:
+    image: aerokube/selenoid:latest
+    container_name: selenoid
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+      - ./selenoid/browsers.json:/etc/selenoid/browsers.json
+    command:
+      - "-conf"
+      - "/etc/selenoid/browsers.json"
+    ports:
+      - "4444:4444"
+
+  tests:
+    build: .
+    depends_on:
+      - selenoid
+    environment:
+      SELENOID_URL: http://selenoid:4444/wd/hub
+    volumes:
+      - maven-repo:/root/.m2
+      - ./target:/app/target
+
+volumes:
+  maven-repo:
