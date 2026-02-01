@@ -1,10 +1,16 @@
 pipeline {
-  agent any
+  agent {
+    docker {
+      image 'docker:latest'
+      args '-v /var/run/docker.sock:/var/run/docker.sock'
+    }
+  }
 
   stages {
     stage('UI tests') {
       steps {
         sh '''
+          apk add --no-cache docker-compose
           docker-compose down -v
           docker-compose up --build --abort-on-container-exit
         '''
